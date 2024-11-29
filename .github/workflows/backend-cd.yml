@@ -1,0 +1,15 @@
+name: Call Reusable CD Workflow for Backend
+
+on:
+  push:
+    branches:
+      - main
+      - release/*
+
+jobs:
+  call-cd:
+    uses: organization/devops/.github/workflows/backend-cd.yml@main
+    with:
+      docker_username: ${{ secrets.DOCKER_USERNAME }}
+      docker_password: ${{ secrets.DOCKER_PASSWORD }}
+      microservices: "payments-service-example,products-service-example,shipping-service-example,orders-service-example"
