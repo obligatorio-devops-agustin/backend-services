@@ -3,8 +3,9 @@ name: Call Reusable CD Workflow for Backend
 on:
   push:
     branches:
-      - main
-      - release/*
+      - master
+      - release
+      - dev
 
 jobs:
   call-cd:
