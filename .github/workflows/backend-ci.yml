@@ -16,7 +16,7 @@ on:
 
 jobs:
   build-and-analyze:
-    name: Build and Analyze Microservices
+    name: Build, Test, and Analyze Microservices
     runs-on: ubuntu-latest
 
     steps:
@@ -50,8 +50,10 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           for service in payments-service-example products-service-example shipping-service-example orders-service-example; do
-            echo "Running SonarQube analysis for $service"
             cd $service
+            echo "Building and testing $service"
+            mvn -B clean test
+            echo "Running SonarQube analysis for $service"
             mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
               -Dsonar.projectKey=obligatorio-devops-agustin_backend-services_$service \
               -Dsonar.projectBaseDir=$(pwd)
