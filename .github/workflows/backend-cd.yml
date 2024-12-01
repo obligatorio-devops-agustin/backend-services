@@ -16,7 +16,7 @@ on:
 
 jobs:
   call-cd:
-    uses: organization/devops/.github/workflows/backend-cd.yml@master
+    uses: obligatorio-devops-agustin/devops/.github/workflows/backend-cd.yml@master
     with:
       docker_username: ${{ secrets.DOCKER_USERNAME }}
       docker_password: ${{ secrets.DOCKER_PASSWORD }}
