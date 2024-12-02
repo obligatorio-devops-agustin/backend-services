@@ -1,11 +1,11 @@
 name: Call Reusable CD Workflow for Backend
 
 on:
-  push:
-    branches:
-      - master
-      - release
-      - dev
+  workflow_run:
+    workflows:
+      - Backend CI Workflow
+    types:
+      - completed
       
   workflow_dispatch:
     inputs:
