@@ -17,9 +17,9 @@ on:
 jobs:
   call-cd:
     uses: obligatorio-devops-agustin/devops/.github/workflows/backend-cd.yml@master
-    secrets:
-      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
     with:
       branch: ${{ github.event.inputs.branch || github.ref_name }}
       microservices: "payments-service-example,products-service-example,shipping-service-example,orders-service-example"
+    secrets:
+      docker_username: ${{ secrets.DOCKER_USERNAME }}
+      docker_password: ${{ secrets.DOCKER_PASSWORD }}
