@@ -60,15 +60,23 @@ jobs:
             cd ..
           done
 
-      - name: Trigger CD Workflow
-        if: ${{ success() }}
-        uses: peter-evans/repository-dispatch@v2
-        with:
-          repository: obligatorio-devops-agustin/backend-services
-          event-type: trigger-cd
-          token: ${{ secrets.GITHUB_TOKEN }}
-          client-payload: |
-            {
-              "branch": "${{ github.ref_name }}",
-              "microservices": "payments-service-example,products-service-example,shipping-service-example,orders-service-example"
-            }
+  trigger-cd:
+      name: Trigger Backend CD Workflow
+      needs: build-and-analyze
+      runs-on: ubuntu-latest
+      if: ${{ needs.build-and-analyze.result == 'success' }}
+      steps:
+        - name: Trigger Backend CD Workflow
+          uses: actions/github-script@v6
+          with:
+            script: |
+              github.rest.actions.createWorkflowDispatch({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id: 'backend-cd.yml',
+                ref: context.ref,
+                inputs: {
+                  branch: context.ref.replace('refs/heads/', ''),
+                  microservices: 'payments-service-example,products-service-example,shipping-service-example,orders-service-example'
+                }
+              });
