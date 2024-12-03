@@ -23,9 +23,9 @@ class ProductsEndpointTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$[0].id").value("123"))
-                .andExpect(jsonPath("$[0].name").value("Producto 123"));
+                .andExpect(jsonPath("$[*].id").value(org.hamcrest.Matchers.containsInAnyOrder("123", "321", "111")));
     }
+
 
     @Test
     void testGetProductExists() throws Exception {
