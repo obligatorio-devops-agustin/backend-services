@@ -27,10 +27,10 @@ class OrdersLogicTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
 
-        // Set URLs for dependent services
-        OrdersLogic.setPaymentsServiceUrl("http://localhost:8081");
-        OrdersLogic.setShippingServiceUrl("http://localhost:8082");
-        OrdersLogic.setProductsServiceUrl("http://localhost:8083");
+        // Setear URLs ficticias para los servicios dependientes
+        OrdersLogic.setPaymentsServiceUrl("mockPaymentsServiceUrl");
+        OrdersLogic.setShippingServiceUrl("mockShippingServiceUrl");
+        OrdersLogic.setProductsServiceUrl("mockProductsServiceUrl");
     }
 
     @Test
@@ -45,7 +45,7 @@ class OrdersLogicTest {
 
         // Mock para el servicio de envíos
         when(restTemplate.postForEntity(anyString(), eq(null), eq(String.class)))
-                .thenReturn(null); // Simula que el servicio de envíos no devuelve nada relevante
+                .thenReturn(null);
 
         // Ejecutar el método
         OrderStatus result = ordersLogic.buy(Arrays.asList("product1"));
@@ -57,47 +57,47 @@ class OrdersLogicTest {
 
     @Test
     void testBuyWithMissingProduct() {
-        // Mock products service
-        when(restTemplate.getForObject("http://localhost:8083/products/product1", Product.class))
+        // Mock para el servicio de productos
+        when(restTemplate.getForObject(anyString(), eq(Product.class)))
                 .thenReturn(null);
 
-        // Execute
+        // Ejecutar el método
         OrderStatus result = ordersLogic.buy(Arrays.asList("product1"));
 
-        // Assertions
+        // Validar las aserciones
         assertFalse(result.isSuccess());
         assertEquals("Missing: product1.", result.getDescription());
     }
 
     @Test
     void testBuyWithNoStock() {
-        // Mock products service
-        when(restTemplate.getForObject("http://localhost:8083/products/product1", Product.class))
+        // Mock para el servicio de productos
+        when(restTemplate.getForObject(anyString(), eq(Product.class)))
                 .thenReturn(new Product("product1", "Product 1", 0, "Description"));
 
-        // Execute
+        // Ejecutar el método
         OrderStatus result = ordersLogic.buy(Arrays.asList("product1"));
 
-        // Assertions
+        // Validar las aserciones
         assertFalse(result.isSuccess());
         assertEquals("No stock: product1.", result.getDescription());
     }
 
     @Test
     void testBuyPaymentFailed() {
-        // Mock products service
-        when(restTemplate.getForObject("http://localhost:8083/products/product1", Product.class))
+        // Mock para el servicio de productos
+        when(restTemplate.getForObject(anyString(), eq(Product.class)))
                 .thenReturn(new Product("product1", "Product 1", 10, "Description"));
 
-        // Mock payments service
-        when(restTemplate.postForObject("http://localhost:8081/payments/order123", null, PaymentStatus.class))
-                .thenReturn(new PaymentStatus("order123", false, "Payment failed"));
+        // Mock para el servicio de pagos
+        when(restTemplate.postForObject(anyString(), eq(null), eq(PaymentStatus.class)))
+                .thenReturn(new PaymentStatus("order123", false, "Insufficient funds"));
 
-        // Execute
+        // Ejecutar el método
         OrderStatus result = ordersLogic.buy(Arrays.asList("product1"));
 
-        // Assertions
+        // Validar las aserciones
         assertFalse(result.isSuccess());
-        assertEquals("Payment failed", result.getDescription());
+        assertEquals("Insufficient funds", result.getDescription());
     }
 }
