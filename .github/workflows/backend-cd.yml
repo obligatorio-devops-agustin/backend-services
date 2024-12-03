@@ -1,16 +1,25 @@
 name: Call Reusable CD Workflow for Backend
 
 on:
-  push:
-    branches:
-      - master
-      - release
-      - dev
+  workflow_run:
+    workflows:
+      - Backend CI Workflow
+    types:
+      - completed
+      
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Branch to deploy"
+        required: false
+        default: "master"
 
 jobs:
   call-cd:
-    uses: organization/devops/.github/workflows/backend-cd.yml@main
+    uses: obligatorio-devops-agustin/devops/.github/workflows/backend-cd.yml@master
     with:
+      branch: ${{ github.event.inputs.branch || github.ref_name }}
+      microservices: "payments-service-example,products-service-example,shipping-service-example,orders-service-example"
+    secrets:
       docker_username: ${{ secrets.DOCKER_USERNAME }}
       docker_password: ${{ secrets.DOCKER_PASSWORD }}
-      microservices: "payments-service-example,products-service-example,shipping-service-example,orders-service-example"
