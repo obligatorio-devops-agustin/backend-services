@@ -16,6 +16,7 @@ on:
 
 jobs:
   call-cd:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     uses: obligatorio-devops-agustin/devops/.github/workflows/backend-cd.yml@master
     with:
       branch: ${{ github.event.inputs.branch || github.ref_name }}
