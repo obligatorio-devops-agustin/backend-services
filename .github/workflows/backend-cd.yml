@@ -1,12 +1,10 @@
 name: Call Reusable CD Workflow for Backend
 
 on:
-  workflow_run:
-    workflows:
-      - Backend CI Workflow
+  repository_dispatch:
     types:
-      - completed
-      
+      - trigger-cd
+
   workflow_dispatch:
     inputs:
       branch:
@@ -16,11 +14,11 @@ on:
 
 jobs:
   call-cd:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event_name != 'repository_dispatch' || github.event.client_payload.branch }}
     uses: obligatorio-devops-agustin/devops/.github/workflows/backend-cd.yml@master
     with:
-      branch: ${{ github.event.inputs.branch || github.ref_name }}
-      microservices: "payments-service-example,products-service-example,shipping-service-example,orders-service-example"
+      branch: ${{ github.event.inputs.branch || github.event.client_payload.branch || github.ref_name }}
+      microservices: ${{ github.event.inputs.microservices || github.event.client_payload.microservices }}
     secrets:
       docker_username: ${{ secrets.DOCKER_USERNAME }}
       docker_password: ${{ secrets.DOCKER_PASSWORD }}
