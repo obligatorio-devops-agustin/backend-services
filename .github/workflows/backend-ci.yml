@@ -59,3 +59,16 @@ jobs:
               -Dsonar.projectBaseDir=$(pwd)
             cd ..
           done
+
+      - name: Trigger CD Workflow
+        if: ${{ success() }}
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          repository: obligatorio-devops-agustin/backend-services
+          event-type: trigger-cd
+          token: ${{ secrets.GITHUB_TOKEN }}
+          client-payload: |
+            {
+              "branch": "${{ github.ref_name }}",
+              "microservices": "payments-service-example,products-service-example,shipping-service-example,orders-service-example"
+            }
