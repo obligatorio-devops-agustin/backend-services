@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2f6c4888-82c7-4ec8-b103-1cba6affa2e8" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2pgXtv6BA768WhQ7OS3X7mFmsSb" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.ShippingLogicTest.testGetShipping.executor": "Run",
+    "JUnit.ShippingLogicTest.testHasShipping.executor": "Run",
+    "JUnit.ShippingServiceExampleApplicationTests.contextLoads.executor": "Run",
+    "JUnit.ShippingServiceExampleApplicationTests.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "pruebas-automatizadas",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/agusm/Desktop/Facultad/Sexto Semestre/DevOps/obligatorio/backend-services/shipping"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="uy.edu.ort.devops.shippingserviceexample.logic" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.ShippingServiceExampleApplicationTests">
+    <configuration name="ShippingLogicTest.testGetShipping" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shipping-service-example" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="uy.edu.ort.devops.shippingserviceexample.logic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="uy.edu.ort.devops.shippingserviceexample.logic" />
+      <option name="MAIN_CLASS_NAME" value="uy.edu.ort.devops.shippingserviceexample.logic.ShippingLogicTest" />
+      <option name="METHOD_NAME" value="testGetShipping" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShippingLogicTest.testHasShipping" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shipping-service-example" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="uy.edu.ort.devops.shippingserviceexample.logic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="uy.edu.ort.devops.shippingserviceexample.logic" />
+      <option name="MAIN_CLASS_NAME" value="uy.edu.ort.devops.shippingserviceexample.logic.ShippingLogicTest" />
+      <option name="METHOD_NAME" value="testHasShipping" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShippingServiceExampleApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shipping-service-example" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="uy.edu.ort.devops.shippingserviceexample.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="uy.edu.ort.devops.shippingserviceexample" />
+      <option name="MAIN_CLASS_NAME" value="uy.edu.ort.devops.shippingserviceexample.ShippingServiceExampleApplicationTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShippingServiceExampleApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shipping-service-example" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="uy.edu.ort.devops.shippingserviceexample.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="uy.edu.ort.devops.shippingserviceexample" />
+      <option name="MAIN_CLASS_NAME" value="uy.edu.ort.devops.shippingserviceexample.ShippingServiceExampleApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ShippingServiceExampleApplicationTests" />
+        <item itemvalue="JUnit.ShippingLogicTest.testGetShipping" />
+        <item itemvalue="JUnit.ShippingLogicTest.testHasShipping" />
+        <item itemvalue="JUnit.ShippingServiceExampleApplicationTests.contextLoads" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2f6c4888-82c7-4ec8-b103-1cba6affa2e8" name="Changes" comment="" />
+      <created>1733188911242</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1733188911242</updated>
+    </task>
+    <servers />
+  </component>
+</project>
