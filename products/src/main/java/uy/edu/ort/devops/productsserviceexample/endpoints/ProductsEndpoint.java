@@ -18,6 +18,11 @@ public class ProductsEndpoint {
     @Autowired
     private ProductsLogic logic;
 
+    @GetMapping("/health")
+    public ResponseEntity<String> healthCheck() {
+        return ResponseEntity.ok("Healthy");
+    }
+
     @GetMapping("")
     public Collection<Product> index() {
         return logic.list();

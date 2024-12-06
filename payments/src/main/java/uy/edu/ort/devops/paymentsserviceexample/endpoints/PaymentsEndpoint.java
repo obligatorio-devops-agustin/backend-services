@@ -15,6 +15,11 @@ public class PaymentsEndpoint {
     @Autowired
     private PaymentsLogic logic;
 
+    @GetMapping("/health")
+    public ResponseEntity<String> healthCheck() {
+        return ResponseEntity.ok("Healthy");
+    }
+
     @PostMapping(path = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public PaymentStatus pay(@PathVariable("id") String orderId) {
         return logic.pay(orderId);
