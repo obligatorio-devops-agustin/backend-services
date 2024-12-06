@@ -29,7 +29,7 @@ public class OrdersLogic {
 
     @Autowired
     private RestTemplate restTemplate;
-    
+
     public OrderStatus buy(List<String> products) {
         StringBuilder errorBuilder = new StringBuilder();
         logger.info("Creating order.");
