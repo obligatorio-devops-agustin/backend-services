@@ -13,6 +13,11 @@ public class ShippingEndpoint {
     @Autowired
     private ShippingLogic logic;
 
+    @GetMapping("/health")
+    public ResponseEntity<String> healthCheck() {
+        return ResponseEntity.ok("Healthy");
+    }
+
     @PostMapping(path = "/{id}")
     public ResponseEntity create(@PathVariable("id") String id) {
         logic.addShipping(id);
