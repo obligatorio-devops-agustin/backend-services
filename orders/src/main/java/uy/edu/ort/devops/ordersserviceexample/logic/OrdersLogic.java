@@ -3,6 +3,7 @@ package uy.edu.ort.devops.ordersserviceexample.logic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -17,25 +18,18 @@ public class OrdersLogic {
 
     private static Logger logger = LoggerFactory.getLogger(OrdersLogic.class);
 
+    @Value("${PAYMENTS_URL}")
     private static String PAYMENTS_SERVICE_URL;
+
+    @Value("${SHIPPING_URL}")
     private static String SHIPPING_SERVICE_URL;
+
+    @Value("${PRODUCTS_URL}")
     private static String PRODUCTS_SERVICE_URL;
 
     @Autowired
     private RestTemplate restTemplate;
-
-    public static void setPaymentsServiceUrl(String paymentsServiceUrl) {
-        PAYMENTS_SERVICE_URL = paymentsServiceUrl;
-    }
-
-    public static void setShippingServiceUrl(String shippingServiceUrl) {
-        SHIPPING_SERVICE_URL = shippingServiceUrl;
-    }
-
-    public static void setProductsServiceUrl(String productsServiceUrl) {
-        PRODUCTS_SERVICE_URL = productsServiceUrl;
-    }
-
+    
     public OrderStatus buy(List<String> products) {
         StringBuilder errorBuilder = new StringBuilder();
         logger.info("Creating order.");
