@@ -24,7 +24,7 @@ jobs:
           DEVOPS_TOKEN: ${{ secrets.DEVOPS_TOKEN }}
         run: |
           # Define the list of microservices to pass
-          MICROSERVICES="payments-service-example,products-service-example,shipping-service-example,orders-service-example"
+          MICROSERVICES="payments,products,shipping,orders"
 
           # Send the trigger request to the DevOps repository
           curl -X POST \
