@@ -19,19 +19,19 @@ public class OrdersLogic {
     private static Logger logger = LoggerFactory.getLogger(OrdersLogic.class);
 
     @Value("${PAYMENTS_URL}")
-    private static String PAYMENTS_SERVICE_URL;
+    private String paymentsServiceURL;
 
     @Value("${SHIPPING_URL}")
-    private static String SHIPPING_SERVICE_URL;
+    private String shippingServiceURL;
 
     @Value("${PRODUCTS_URL}")
-    private static String PRODUCTS_SERVICE_URL;
+    private String productsServiceURL;
 
     @Autowired
     private RestTemplate restTemplate;
 
     public String health (){
-        return "Payments: " + PAYMENTS_SERVICE_URL + " Shipping: " + SHIPPING_SERVICE_URL + " Products: " + PRODUCTS_SERVICE_URL;
+        return "Payments: " + paymentsServiceURL + " Shipping: " + shippingServiceURL + " Products: " + productsServiceURL;
     }
 
     public OrderStatus buy(List<String> products) {
@@ -82,7 +82,7 @@ public class OrdersLogic {
     private Product getProduct(String id) {
         try {
             logger.info("Invoking products service.");
-            return restTemplate.getForObject(PRODUCTS_SERVICE_URL + "/products/" + id, Product.class);
+            return restTemplate.getForObject(productsServiceURL + "/products/" + id, Product.class);
         } catch (HttpClientErrorException ex)   {
             return null;
         }
@@ -91,7 +91,7 @@ public class OrdersLogic {
     private PaymentStatus pay(String orderId) {
         try {
             logger.info("Invoking payments service.");
-            return restTemplate.postForObject(PAYMENTS_SERVICE_URL + "/payments/" + orderId, null, PaymentStatus.class);
+            return restTemplate.postForObject(paymentsServiceURL + "/payments/" + orderId, null, PaymentStatus.class);
         } catch (HttpClientErrorException ex)   {
             return null;
         }
@@ -99,6 +99,6 @@ public class OrdersLogic {
 
     private void addShipping(String orderId) {
         logger.info("Invoking shipping service.");
-        restTemplate.postForEntity(SHIPPING_SERVICE_URL + "/shipping/" + orderId, null, String.class);
+        restTemplate.postForEntity(shippingServiceURL + "/shipping/" + orderId, null, String.class);
     }
 }
