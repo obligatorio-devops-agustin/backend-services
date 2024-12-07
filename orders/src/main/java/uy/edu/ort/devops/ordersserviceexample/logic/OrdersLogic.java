@@ -30,6 +30,10 @@ public class OrdersLogic {
     @Autowired
     private RestTemplate restTemplate;
 
+    public String health (){
+        return "Payments: " + PAYMENTS_SERVICE_URL + " Shipping: " + SHIPPING_SERVICE_URL + " Products: " + PRODUCTS_SERVICE_URL;
+    }
+
     public OrderStatus buy(List<String> products) {
         StringBuilder errorBuilder = new StringBuilder();
         logger.info("Creating order.");
