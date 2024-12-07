@@ -26,11 +26,6 @@ class OrdersLogicTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-
-        // Setear URLs ficticias para los servicios dependientes
-        OrdersLogic.setPaymentsServiceUrl("mockPaymentsServiceUrl");
-        OrdersLogic.setShippingServiceUrl("mockShippingServiceUrl");
-        OrdersLogic.setProductsServiceUrl("mockProductsServiceUrl");
     }
 
     @Test
