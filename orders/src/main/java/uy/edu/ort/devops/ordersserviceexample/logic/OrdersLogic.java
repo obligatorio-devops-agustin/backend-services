@@ -11,7 +11,9 @@ import uy.edu.ort.devops.ordersserviceexample.domain.OrderStatus;
 import uy.edu.ort.devops.ordersserviceexample.dtos.PaymentStatus;
 import uy.edu.ort.devops.ordersserviceexample.dtos.Product;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class OrdersLogic {
@@ -31,7 +33,24 @@ public class OrdersLogic {
     private RestTemplate restTemplate;
 
     public String health (){
-        return "Payments: " + paymentsServiceURL + " Shipping: " + shippingServiceURL + " Products: " + productsServiceURL;
+        StringBuilder result = new StringBuilder();
+        result.append("Payments: ");
+        result.append(paymentsServiceURL);
+        result.append(" Shipping: ");
+        result.append(shippingServiceURL);
+        result.append(" Products: ");
+        result.append(productsServiceURL);
+        try {
+            result.append(restTemplate.getForObject(productsServiceURL + "/products/" + 111, String.class));
+        } catch (HttpClientErrorException ex)   {
+            result.append(" Products service is down.");
+            result.append(ex.getMessage());
+            result.append(" ------ ");
+            result.append(Arrays.toString(ex.getStackTrace()));
+        }
+
+        return result.toString();
+
     }
 
     public OrderStatus buy(List<String> products) {
@@ -60,7 +79,7 @@ public class OrdersLogic {
 
         }
 
-        String orderId = java.util.UUID.randomUUID().toString();
+        String orderId = UUID.randomUUID().toString();
         if (!hasError) {
             logger.info("Products ok.");
             PaymentStatus paymentStatus = pay(orderId);
