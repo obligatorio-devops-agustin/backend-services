@@ -18,7 +18,7 @@ public class OrdersEndpoint {
 
     @GetMapping("/health")
     public ResponseEntity<String> healthCheck() {
-        return ResponseEntity.ok(logic.health());
+        return ResponseEntity.ok("Healthy");
     }
 
     @PostMapping(path = "", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
