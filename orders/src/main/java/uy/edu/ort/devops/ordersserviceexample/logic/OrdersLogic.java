@@ -32,27 +32,6 @@ public class OrdersLogic {
     @Autowired
     private RestTemplate restTemplate;
 
-    public String health (){
-        StringBuilder result = new StringBuilder();
-        result.append("Payments: ");
-        result.append(paymentsServiceURL);
-        result.append(" Shipping: ");
-        result.append(shippingServiceURL);
-        result.append(" Products: ");
-        result.append(productsServiceURL);
-        try {
-            result.append(restTemplate.getForObject(productsServiceURL + "/products/" + 111, String.class));
-        } catch (HttpClientErrorException ex)   {
-            result.append(" Products service is down.");
-            result.append(ex.getMessage());
-            result.append(" ------ ");
-            result.append(Arrays.toString(ex.getStackTrace()));
-        }
-
-        return result.toString();
-
-    }
-
     public OrderStatus buy(List<String> products) {
         StringBuilder errorBuilder = new StringBuilder();
         logger.info("Creating order.");
@@ -101,7 +80,7 @@ public class OrdersLogic {
     private Product getProduct(String id) {
         try {
             logger.info("Invoking products service.");
-            return restTemplate.getForObject(productsServiceURL + "/products/" + id, Product.class);
+            return restTemplate.getForObject(productsServiceURL + "/" + id, Product.class);
         } catch (HttpClientErrorException ex)   {
             return null;
         }
@@ -110,7 +89,7 @@ public class OrdersLogic {
     private PaymentStatus pay(String orderId) {
         try {
             logger.info("Invoking payments service.");
-            return restTemplate.postForObject(paymentsServiceURL + "/payments/" + orderId, null, PaymentStatus.class);
+            return restTemplate.postForObject(paymentsServiceURL + "/" + orderId, null, PaymentStatus.class);
         } catch (HttpClientErrorException ex)   {
             return null;
         }
@@ -118,6 +97,6 @@ public class OrdersLogic {
 
     private void addShipping(String orderId) {
         logger.info("Invoking shipping service.");
-        restTemplate.postForEntity(shippingServiceURL + "/shipping/" + orderId, null, String.class);
+        restTemplate.postForEntity(shippingServiceURL + "/" + orderId, null, String.class);
     }
 }
